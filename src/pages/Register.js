@@ -13,7 +13,6 @@ import axios from 'axios'
 import styled from 'styled-components'
 
 import Header from '../partials/Header'
-import Toast from './Toast'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +68,7 @@ const Register = () => {
     if (!form.name || !form.brand || !form.cost) {
       alert('Preencha todos os campos corretamente!')
     } else {
-      axios.post('http://localhost:8080/api/products', form)
+      axios.post('https://jeanlima3915-api-rest-mongodb.herokuapp.com//api/products', form)
       .then((response) => {
         if (response.status === 200) {
           alert(`Produto ${form.name} ${form.brand} cadastrado com sucesso!`)

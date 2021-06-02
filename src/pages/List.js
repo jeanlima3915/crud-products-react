@@ -54,7 +54,7 @@ const List = () => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/products/list')
+    axios.get('https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/list')
       .then((response) => {
         setProducts(response.data)
       })
@@ -68,7 +68,7 @@ const List = () => {
     const confirmation = window.confirm('Tem certeza que deseja excluir este produto?')
 
     if (confirmation === true) {
-      axios.delete(`http://localhost:8080/api/products/${id}`)
+      axios.delete(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/${id}`)
       window.location.reload()
     }
   }

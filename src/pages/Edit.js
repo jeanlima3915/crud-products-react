@@ -58,7 +58,7 @@ const Register = () => {
   })
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/products/list/${id}`)
+    axios.get(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/list/${id}`)
     .then(response => {
       const data = response.data[0]
       setForm({
