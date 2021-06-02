@@ -81,7 +81,7 @@ const Register = () => {
   }
 
   const handleRegisterButton = (e) => {
-    axios.put(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/${id}`, form)
+    axios.put(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/${id}`, form)
       .then((response) => {
         if (response.status === 200) {
           alert(`Produto ${form.name} ${form.brand} alterado com sucesso!`)
