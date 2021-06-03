@@ -64,11 +64,11 @@ const List = () => {
     history.push(route)
   }
 
-  const handleDeleteIconClick = id => {
+  const handleDeleteIconClick = async id => {
     const confirmation = window.confirm('Tem certeza que deseja excluir este produto?')
 
     if (confirmation === true) {
-      axios.delete(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/${id}`)
+      await axios.delete(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/${id}`)
       window.location.reload()
     }
   }
