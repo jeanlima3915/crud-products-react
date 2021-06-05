@@ -8,6 +8,8 @@ import axios from 'axios'
 
 import Header from '../partials/Header'
 
+import { CircularProgress, Typography } from '@material-ui/core'
+
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 
@@ -46,19 +48,40 @@ const Label = styled.label`
   font-size: 12px;
 `
 
+const Message = styled.div`
+  margin-top: 50px;
+  font-size: 20px;
+  text-align: center;
+`
+
+const Loading  = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
 
 const List = () => {
 
   const history = useHistory()
 
   const [products, setProducts] = useState([])
+  const [circularProgressVisible, setCircularProgressVisible] = useState(true)
+  const [messageVisible, setMessageVisible] = useState(false)
 
-  useEffect(() => {
+  function listProducts() {
     axios.get('https://jeanlimadev-api-rest-mongodb.herokuapp.com/api/products/list')
       .then((response) => {
         setProducts(response.data)
+        setCircularProgressVisible(false)
+        if(response.data.length === 0) {
+          setMessageVisible(true)
+        }
       })
-  },[])
+  }
+
+  useEffect(listProducts,[])
 
   const handleEditIconClick = route => {
     history.push(route)
@@ -68,9 +91,11 @@ const List = () => {
     const confirmation = window.confirm('Tem certeza que deseja excluir este produto?')
 
     if (confirmation === true) {
+      setCircularProgressVisible(true)
       axios.delete(`https://jeanlimadev-api-rest-mongodb.herokuapp.com/api/products/${id}`)
         .then(() => {
-          window.location.reload()
+          listProducts()
+          setCircularProgressVisible(false)
         })
     }
   }
@@ -79,6 +104,11 @@ const List = () => {
     <>
       <Header />
       <Title>Listagem de Produtos</Title>
+      { messageVisible && <Message>Não há produtos a serem exibidos!</Message> }
+      { circularProgressVisible && <Loading>
+        <CircularProgress />
+        <Typography variant="caption">Carregando...</Typography>
+        </Loading> }
       <ListProducts>
         {
           products.map(item => (
