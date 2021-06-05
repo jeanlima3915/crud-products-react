@@ -68,7 +68,7 @@ const Register = () => {
     if (!form.name || !form.brand || !form.cost) {
       alert('Preencha todos os campos corretamente!')
     } else {
-      axios.post('https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products', form)
+      axios.post('https://jeanlimadev-api-rest-mongodb.herokuapp.com/api/products', form)
       .then((response) => {
         if (response.status === 200) {
           alert(`Produto ${form.name} ${form.brand} cadastrado com sucesso!`)

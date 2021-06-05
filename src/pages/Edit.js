@@ -58,7 +58,7 @@ const Register = () => {
   })
 
   useEffect(() => {
-    axios.get(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/list/${id}`)
+    axios.get(`https://jeanlimadev-api-rest-mongodb.herokuapp.com/api/products/list/${id}`)
     .then(response => {
       const data = response.data[0]
       setForm({
@@ -81,7 +81,7 @@ const Register = () => {
   }
 
   const handleRegisterButton = (e) => {
-    axios.put(`https://jeanlima3915-api-rest-mongodb.herokuapp.com/api/products/${id}`, form)
+    axios.put(`https://jeanlimadev-api-rest-mongodb.herokuapp.com/api/products/${id}`, form)
       .then((response) => {
         if (response.status === 200) {
           alert(`Produto ${form.name} ${form.brand} alterado com sucesso!`)
